@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SuccessResponse<T> {
     private String message;
-    private T data;
+    private T result;
 }

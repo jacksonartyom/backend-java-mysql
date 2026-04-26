@@ -28,7 +28,7 @@ public class TransactionController {
 	private final TransactionService service;
 
 	@GetMapping
-	public SuccessResponse<List<TransactionResponse>> getAllTransaction(@RequestParam String walletId, Authentication authentication) {
+	public SuccessResponse<List<TransactionResponse>> getAllTransactionByWalletId(@RequestParam String walletId, Authentication authentication) {
 		SuccessResponse<List<TransactionResponse>> res = new SuccessResponse<>("success",
 				service.getAllByWalletId(walletId));
 		return res;
