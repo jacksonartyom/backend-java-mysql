@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +18,7 @@ public interface WalletRepository extends JpaRepository<Wallet, Long> {
 	Optional<Wallet> findByWalletId(String walletId);
 	
 	long deleteByWalletId(String walletId);
+	
+	@Query(value = "SELECT COALESCE(SUM(balance), 0) AS total_balance FROM wallets WHERE user_id = :userId", nativeQuery = true)
+	BigDecimal sumBalanceByUserId(@Param("userId") String userId);
 }

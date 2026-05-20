@@ -47,8 +47,8 @@ class TransactionServiceTest {
         Transaction t1 = new Transaction();
         Transaction t2 = new Transaction();
 
-        TransactionResponse r1 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId);
-        TransactionResponse r2 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId);
+        TransactionResponse r1 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId, walletId);
+        TransactionResponse r2 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId, walletId);
 
         when(repo.findByWalletId(walletId)).thenReturn(List.of(t1, t2));
         when(mapper.toResponse(t1)).thenReturn(r1);
@@ -121,7 +121,7 @@ class TransactionServiceTest {
         TransactionRequest req = new TransactionRequest();
         Transaction updated = new Transaction();
         Transaction saved = new Transaction();
-        TransactionResponse response = new TransactionResponse(transactionId, transactionId, transactionId, null, transactionId, transactionId, transactionId, transactionId, transactionId);
+        TransactionResponse response = new TransactionResponse(transactionId, transactionId, transactionId, null, transactionId, transactionId, transactionId, transactionId, transactionId, transactionId);
 
         when(repo.findByTransactionId(transactionId)).thenReturn(Optional.of(existing));
         when(mapper.toEntityUpdate(existing, req)).thenReturn(updated);

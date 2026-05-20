@@ -18,5 +18,7 @@ public class TransactionResponse {
 	private String type;
 	private String transactionDate;
 	private String categoryId;
+	private String categoryName;
 	private String userId;
+	
 }
