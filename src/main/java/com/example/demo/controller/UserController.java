@@ -20,7 +20,7 @@ public class UserController {
 
     private final UserService service;
 
-    @PostMapping("/login")
+    @PostMapping("/sign-in")
     public SuccessResponse<UserResponse> login(@RequestBody UserRequest req) {
     	SuccessResponse<UserResponse> res = new SuccessResponse<>("success", service.login(req));
         return res;

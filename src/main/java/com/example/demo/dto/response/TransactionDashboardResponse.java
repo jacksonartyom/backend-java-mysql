@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class TransactionResponse {
+public class TransactionDashboardResponse {
     private String transactionId;
 	private String walletId;
 	private String name;
@@ -17,7 +17,8 @@ public class TransactionResponse {
 	private String note;
 	private String type;
 	private String transactionDate;
-	private CategoryResponse category;
+	private String categoryId;
+	private String categoryName;
 	private String userId;
 	
 }

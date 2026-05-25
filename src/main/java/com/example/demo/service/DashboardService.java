@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.response.DashboardResponse;
-import com.example.demo.dto.response.TransactionResponse;
+import com.example.demo.dto.response.TransactionDashboardResponse;
 import com.example.demo.dto.response.WalletResponse;
 import com.example.demo.mapper.WalletMapper;
 import com.example.demo.repository.TransactionRepository;
@@ -27,7 +27,7 @@ public class DashboardService {
 	public DashboardResponse getDashboardDetail(String userId) {
 
 		BigDecimal totalBalance = walletRepo.sumBalanceByUserId(userId);
-		List<TransactionResponse> recentTransactions = transactionRepo.findByUserId(userId);
+		List<TransactionDashboardResponse> recentTransactions = transactionRepo.findByUserId(userId);
 		List<WalletResponse> wallets = walletRepo.findByUserId(userId).stream().map(walletMapper::toResponse).toList();
 		return DashboardResponse.builder().totalBalance(totalBalance).recentTransactions(recentTransactions)
 				.wallets(wallets).build();

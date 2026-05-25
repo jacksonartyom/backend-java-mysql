@@ -64,7 +64,7 @@ public class UserService {
 	}
 
 	public String generateToken(String userId) {
-		long EXPIRATION_TIME = 1000 * 60 * 15; // 15 นาที
+		long EXPIRATION_TIME = 1000 * 60 * 60; // 60 นาที
 
 		return Jwts.builder().setSubject(userId).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

@@ -10,9 +10,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.dto.response.CategoryResponse;
+import com.example.demo.dto.response.TransactionDashboardResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -43,24 +46,26 @@ class TransactionServiceTest {
     @Test
     void shouldReturnTransactionsByWalletId() {
         String walletId = "wallet-1";
+        LocalDate date = LocalDate.parse("2026-02-01");
+        CategoryResponse mockCate = new CategoryResponse("1", "test", "income");
 
-        Transaction t1 = new Transaction();
-        Transaction t2 = new Transaction();
+        TransactionDashboardResponse t1 = TransactionDashboardResponse.builder().build();
+        TransactionDashboardResponse t2 = TransactionDashboardResponse.builder().build();
 
-        TransactionResponse r1 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId, walletId);
-        TransactionResponse r2 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, walletId, walletId, walletId);
+        TransactionResponse r1 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, mockCate, walletId);
+        TransactionResponse r2 = new TransactionResponse(walletId, walletId, walletId, null, walletId, walletId, walletId, mockCate, walletId);
 
-        when(repo.findByWalletId(walletId)).thenReturn(List.of(t1, t2));
-        when(mapper.toResponse(t1)).thenReturn(r1);
-        when(mapper.toResponse(t2)).thenReturn(r2);
+        when(repo.findByWalletId(walletId,date,date)).thenReturn(List.of(t1, t2));
+        when(mapper.toTransactionResponse(t1)).thenReturn(r1);
+        when(mapper.toTransactionResponse(t2)).thenReturn(r2);
 
-        List<TransactionResponse> result = service.getAllByWalletId(walletId);
+        List<TransactionResponse> result = service.getAllByWalletId(walletId,"2","2026");
 
         assertEquals(2, result.size());
         assertEquals(r1, result.get(0));
         assertEquals(r2, result.get(1));
 
-        verify(repo).findByWalletId(walletId);
+        verify(repo).findByWalletId(walletId,date,date);
         verify(mapper, times(2)).toResponse(any(Transaction.class));
     }
 
@@ -121,7 +126,8 @@ class TransactionServiceTest {
         TransactionRequest req = new TransactionRequest();
         Transaction updated = new Transaction();
         Transaction saved = new Transaction();
-        TransactionResponse response = new TransactionResponse(transactionId, transactionId, transactionId, null, transactionId, transactionId, transactionId, transactionId, transactionId, transactionId);
+        CategoryResponse mockCate = new CategoryResponse("1", "test", "income");
+        TransactionResponse response = new TransactionResponse(transactionId, transactionId, transactionId, null, transactionId, transactionId, transactionId, mockCate, transactionId);
 
         when(repo.findByTransactionId(transactionId)).thenReturn(Optional.of(existing));
         when(mapper.toEntityUpdate(existing, req)).thenReturn(updated);

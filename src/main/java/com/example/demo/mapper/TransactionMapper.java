@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
+import com.example.demo.dto.response.TransactionDashboardResponse;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.request.TransactionRequest;
+import com.example.demo.dto.response.CategoryResponse;
 import com.example.demo.dto.response.TransactionResponse;
 import com.example.demo.entity.Transaction;
 
@@ -51,6 +53,18 @@ public class TransactionMapper {
 		return TransactionResponse.builder().transactionId(transaction.getTransactionId()).name(transaction.getName())
 				.note(transaction.getNote()).amount(transaction.getAmount()).type(transaction.getType())
 				.transactionDate(transaction.getTransactionDate()).walletId(transaction.getWalletId())
-				.categoryId(transaction.getCategoryId()).userId(transaction.getUserId()).build();
+				.category(CategoryResponse.builder().categoryId(transaction.getCategoryId())
+						.name(transaction.getName())
+						.type(transaction.getType()).build())
+				.userId(transaction.getUserId()).build();
+	}
+
+	public TransactionResponse toTransactionResponse(TransactionDashboardResponse transaction) {
+		return TransactionResponse.builder().transactionId(transaction.getTransactionId()).name(transaction.getName())
+				.note(transaction.getNote()).amount(transaction.getAmount()).type(transaction.getType())
+				.transactionDate(transaction.getTransactionDate()).walletId(transaction.getWalletId())
+				.category(CategoryResponse.builder().categoryId(transaction.getCategoryId())
+						.name(transaction.getCategoryName()).build())
+				.userId(transaction.getUserId()).build();
 	}
 }
