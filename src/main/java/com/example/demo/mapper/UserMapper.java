@@ -31,6 +31,7 @@ public class UserMapper {
 		user.setEmail(req.getEmail());
 		user.setPhoneNo(req.getPhoneNo());
 		user.setPassword(passwordEncoder.encode(req.getPassword()));
+		user.setImageProfile(req.getImageProfile());
 		user.setCreatedAt(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 		return user;
 	}

@@ -11,4 +11,5 @@ public class UserRequest {
 	private String lastName;
 	private String phoneNo;
 	private String password;
+	private String imageProfile;
 }

@@ -24,6 +24,7 @@ public class User {
 	private String lastName;
 	private String phoneNo;
     private String password;
+    private String imageProfile;
     private LocalDateTime createdAt;
 
 }

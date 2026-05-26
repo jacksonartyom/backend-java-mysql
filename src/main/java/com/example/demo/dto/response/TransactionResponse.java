@@ -2,6 +2,7 @@ package com.example.demo.dto.response;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,8 @@ public class TransactionResponse {
 	private BigDecimal amount;
 	private String note;
 	private String type;
+
+	@JsonProperty("transaction_date")
 	private String transactionDate;
 	private CategoryResponse category;
 	private String userId;
