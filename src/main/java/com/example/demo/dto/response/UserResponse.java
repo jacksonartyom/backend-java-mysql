@@ -17,4 +17,5 @@ public class UserResponse {
 	private String lastName;
 	private String phoneNo;
 	private String token;
+	private String imageProfile;
 }

@@ -38,6 +38,6 @@ public class UserMapper {
 
 	public UserResponse toResponse(User user) {
 		return UserResponse.builder().userId(user.getUserId()).email(user.getEmail()).firstName(user.getFirstName())
-				.midName(user.getMidName()).lastName(user.getLastName()).phoneNo(user.getPhoneNo()).build();
+				.midName(user.getMidName()).lastName(user.getLastName()).phoneNo(user.getPhoneNo()).imageProfile(user.getImageProfile()).build();
 	}
 }

@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.dto.request.UserRequest;
 import com.example.demo.dto.response.UserResponse;
@@ -29,6 +27,13 @@ public class UserController {
     @PostMapping("/sign-up")
     public SuccessResponse<String> create(@RequestBody UserRequest req) {
     	SuccessResponse<String> res = new SuccessResponse<>("success", service.createUser(req));
+        return res;
+    }
+
+    @GetMapping("/user/user-profile")
+    public SuccessResponse<UserResponse> getUserProfile(Authentication authentication){
+        String userId = (String) authentication.getPrincipal();
+        SuccessResponse<UserResponse> res = new SuccessResponse<>("success", service.getUserProfile(userId));
         return res;
     }
 }

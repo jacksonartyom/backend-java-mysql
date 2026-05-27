@@ -71,4 +71,9 @@ public class UserService {
 				.signWith(getSigningKey()).compact();
 	}
 
+	public UserResponse getUserProfile(String userId) {
+		return mapper.toResponse(repo.findByUserId(userId));
+	}
+
+
 }
