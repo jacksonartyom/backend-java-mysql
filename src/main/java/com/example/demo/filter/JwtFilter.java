@@ -32,7 +32,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (path.startsWith("/api/v1/sign-in")
                 || path.startsWith("/api/v1/sign-up")
-                || path.startsWith("/api/v1/upload")
+                || path.startsWith("/api/v1/upload/profile")
+                || path.startsWith("/api/v1/upload/transaction")
                 || path.startsWith("/files/")) {
             filterChain.doFilter(request, response);
             return;

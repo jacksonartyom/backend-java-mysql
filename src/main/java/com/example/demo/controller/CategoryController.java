@@ -27,7 +27,8 @@ public class CategoryController {
 
 	@GetMapping
 	public SuccessResponse<List<CategoryResponse>> getAllCategory(Authentication authentication) {
-		SuccessResponse<List<CategoryResponse>> res = new SuccessResponse<>("success", service.getAll());
+		String userId = (String) authentication.getPrincipal();
+		SuccessResponse<List<CategoryResponse>> res = new SuccessResponse<>("success", service.findByUserIdAndDefault(userId));
 		return res;
 	}
 

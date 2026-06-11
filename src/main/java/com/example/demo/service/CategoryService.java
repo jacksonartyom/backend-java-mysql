@@ -21,8 +21,8 @@ public class CategoryService {
 	private final CategoryRepository repo;
 	private final CategoryMapper mapper;
 
-	public List<CategoryResponse> getAll() {
-		return repo.findAll().stream().map(mapper::toResponse).toList();
+	public List<CategoryResponse> findByUserIdAndDefault(String userId) {
+		return repo.findByUserIdAndDefault(userId).stream().map(mapper::toResponse).toList();
 	}
 
 	public CategoryResponse create(CategoryRequest req) {

@@ -26,7 +26,7 @@ public class SecurityConfig {
         	.cors(cors -> {})
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/sign-in","/api/v1/sign-up","/api/v1/upload","/files/**").permitAll()
+                .requestMatchers("/api/v1/sign-in","/api/v1/sign-up","/api/v1/upload/profile","/api/v1/upload/transaction","/files/**").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(new JwtFilter(jwtService),
